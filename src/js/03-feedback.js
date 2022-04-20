@@ -30,13 +30,17 @@ function onFormInput(event) {
 function onFormSubmit(event) {
   event.preventDefault();
 
-  const formDataToSend = new FormData(event.currentTarget);
-  formDataToSend.forEach((value, name) => {
-    formData[name] = value;
-  });
+  if (form.elements.email.value === '' || form.elements.message.value === '') {
+    alert('Заповніть всі поля форми');
+  } else {
+    const formDataToSend = new FormData(event.currentTarget);
+    formDataToSend.forEach((value, name) => {
+      formData[name] = value;
+    });
 
-  event.currentTarget.reset();
-  localStorage.removeItem(KEY);
+    event.currentTarget.reset();
+    localStorage.removeItem(KEY);
 
-  console.log(formData);
+    console.log(formData);
+  }
 }
